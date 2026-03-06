@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LTD Los Santos - Diamond City RP</title>
+    <meta
+      name="description"
+      content="Catalogue de tarifs LTD Los Santos - Diamond City RP"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #ec4899;
+        --bg-dark: #0f172a;
+        --bg-darker: #020617;
+        --surface: #1e293b;
+        --surface-light: #334155;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --accent: #22d3ee;
+        --success: #10b981;
+        --danger: #ef4444;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-darker);
+        color: var(--text);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      .bg-gradient {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        opacity: 0.05;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+        50% {
+          transform: scale(1.1) rotate(5deg);
+        }
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 0;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .logo {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+        animation: float 3s ease-in-out infinite;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .logo::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transform: translateX(-100%);
+        animation: shine 3s infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .header-content {
+        flex: 1;
+      }
+
+      .header-content h1 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+      }
+
+      .header-content p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .stat-card {
+        background: linear-gradient(
+          135deg,
+          var(--surface) 0%,
+          var(--surface-light) 100%
+        );
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .main-layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .sidebar {
+        background: var(--surface);
+        padding: 2rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 2rem;
+      }
+
+      .sidebar h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+      }
+
+      .filter-group {
+        margin-bottom: 2rem;
+      }
+
+      .filter-label {
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
+      }
+
+      select,
+      input[type="text"] {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: var(--bg-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      select:focus,
+      input[type="text"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      }
+
+      .category-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        padding: 0.625rem 1rem;
+        background: var(--bg-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .chip:hover,
+      .chip.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .content {
+        background: var(--surface);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .content-header {
+        padding: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .content-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .search-box {
+        position: relative;
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+      }
+
+      .table-container {
+        overflow-x: auto;
+        max-height: 70vh;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        position: sticky;
+        top: 0;
+        background: var(--bg-dark);
+        z-index: 10;
+      }
+
+      th {
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      td {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      tbody tr {
+        transition: all 0.3s ease;
+      }
+
+      tbody tr:hover {
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .item-name {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: 600;
+      }
+
+      .item-emoji {
+        font-size: 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--bg-dark);
+        border-radius: 12px;
+      }
+
+      .price {
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .company-badge {
+        padding: 0.375rem 0.875rem;
+        background: rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 999px;
+        font-size: 0.875rem;
+        display: inline-block;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 3rem 0 2rem;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .footer-credits {
+        margin-top: 1rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ===== CALCULATRICE FACTURE ===== */
+      /* Bouton d'ouverture */
+      .calc-toggle-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        transition: 0.3s;
+      }
+      .calc-toggle-btn:hover {
+        transform: scale(1.1);
+        background: var(--primary-dark);
+      }
+
+      /* Panneau latéral */
+      .calc-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 380px;
+        height: 100%;
+        background: var(--surface);
+        z-index: 1001;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+      }
+      .calc-sidebar.active {
+        right: 0;
+      }
+
+      .calc-header {
+        padding: 20px;
+        background: var(--bg-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .calc-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px 10px;
+      }
+      .close-btn:hover {
+        color: var(--danger);
+      }
+
+      .calc-body {
+        padding: 20px;
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+
+      /* Recherche dans la calc */
+      .search-section {
+        position: relative;
+      }
+      .search-section label {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      .search-section input {
+        width: 100%;
+        padding: 12px;
+        background: var(--bg-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: var(--text);
+        font-size: 0.95rem;
+      }
+      .search-section input:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .calc-search-results {
+        position: absolute;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        background: var(--surface-light);
+        border-radius: 8px;
+        z-index: 10;
+        display: none;
+        margin-top: 5px;
+      }
+      .calc-search-results div {
+        padding: 12px;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background 0.2s;
+      }
+      .calc-search-results div:hover {
+        background: var(--primary);
+      }
+
+      /* Articles de la facture */
+      .invoice-row {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .row-top {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .row-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .qty-input {
+        background: var(--bg-darker);
+        border: 1px solid var(--primary);
+        color: white;
+        width: 60px;
+        padding: 8px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .item-price {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      .total-bar {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 900;
+        font-size: 1.2rem;
+        color: var(--success);
+        margin-bottom: 15px;
+      }
+      .btn-clear {
+        width: 100%;
+        padding: 12px;
+        background: var(--danger);
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 0.95rem;
+        transition: background 0.3s;
+      }
+      .btn-clear:hover {
+        background: #dc2626;
+      }
+      .calc-footer {
+        padding: 20px;
+        background: var(--bg-dark);
+      }
+      .empty-msg {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 40px;
+        font-size: 0.95rem;
+      }
+      .delete-btn {
+        background: none;
+        border: none;
+        color: var(--danger);
+        cursor: pointer;
+        margin-left: auto;
+        font-size: 1rem;
+        padding: 5px;
+      }
+      .delete-btn:hover {
+        color: #ff6b6b;
+      }
+
+      @media (max-width: 640px) {
+        .calc-sidebar {
+          width: 100%;
+          right: -100%;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .main-layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+        .header-content h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 1rem;
+        }
+        .header {
+          flex-direction: column;
+          text-align: center;
+        }
+        .content-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .search-box {
+          min-width: 100%;
+        }
+        .stat-value {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+      <header class="header">
+        <div class="logo">🛒</div>
+        <div class="header-content">
+          <h1>LTD Los Santos</h1>
+          <p>Catalogue Tarifs 📌</p>
+        </div>
+      </header>
+
+      <section class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Total Articles</div>
+          <div class="stat-value" id="totalArticles">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Entreprises Partenaires</div>
+          <div class="stat-value" id="totalPartners">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Articles Affichés</div>
+          <div class="stat-value" id="displayedArticles">0</div>
+        </div>
+      </section>
+
+      <div class="main-layout">
+        <aside class="sidebar">
+          <h3>🎯 Filtres</h3>
+
+          <div class="filter-group">
+            <label class="filter-label">Entreprise</label>
+            <select id="filterCompany">
+              <option value="">Toutes les entreprises</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Catégories</label>
+            <div class="category-chips">
+              <button class="chip" data-cat="food">🍔 Nourriture</button>
+              <button class="chip" data-cat="drink">🥤 Boissons</button>
+              <button class="chip" data-cat="alcohol">🍾 Alcool</button>
+              <button class="chip" data-cat="tools">🎒 Outils</button>
+              <button class="chip" data-cat="games">🎮 Jeux</button>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 2rem;
+              padding-top: 2rem;
+              border-top: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <div style="color: var(--text-muted); font-size: 0.875rem">
+              Fait avec ❤️ par
+              <span style="color: var(--accent); font-weight: 600"
+                >Leo & Bruna</span
+              >
+            </div>
+          </div>
+        </aside>
+
+        <section class="content">
+          <div class="content-header">
+            <h2>📦 Liste des Articles</h2>
+            <div class="header-actions">
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Rechercher un article ou entreprise..."
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Article</th>
+                  <th>Prix d'Achat</th>
+                  <th>Vente Entreprise</th>
+                  <th>Vente Clients</th>
+                  <th>Quantité</th>
+                  <th>Entreprise</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <div>Tarifs Entreprises LTD Los Santos - Diamond City RP 💎</div>
+        <div class="footer-credits">Optimisé par Bruna & Leo</div>
+      </footer>
+    </div>
+
+    <script>
+      const SHEET_URL =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSj_e18v3k7e3pRVthB3OVpimhhZB3hHcNClqZ34eHIjXlL6em8y9T8mv35qXAYI8Jdor7juuJygvwP/pub?gid=1387368184&single=true&output=csv";
+      let DATA = [];
+      let activeCategory = "";
+      const EMOJIS = {
+        food: "🍔",
+        drink: "🥤",
+        alcohol: "🍾",
+        tools: "🛠️",
+        games: "🎮",
+        default: "📦",
+      };
+
+      // ===== CALCULATRICE FACTURE =====
+      let invoiceItems = [];
+
+      function toggleCalc() {
+        document.getElementById("calcSidebar").classList.toggle("active");
+      }
+
+      // Recherche intelligente dans la calculatrice
+      function searchInCalc() {
+        const term = document.getElementById("calcSearch").value.toLowerCase();
+        const resultsDiv = document.getElementById("calcSearchResults");
+
+        if (term.length < 2) {
+          resultsDiv.style.display = "none";
+          return;
+        }
+
+        const matches = DATA.filter(
+          (i) => i.Articles && i.Articles.toLowerCase().includes(term),
+        ).slice(0, 5);
+
+        if (matches.length > 0) {
+          resultsDiv.innerHTML = matches
+            .map(
+              (m) => `
+            <div onclick="addArticleToCalc('${(m.Articles || "").replace(/'/g, "\\'")}', '${(m["Prix Vente Entreprise"] || "0").replace(/'/g, "\\'")}')">
+                ${m.Articles} <span style="font-size:0.7rem; color:var(--accent)">(${m["Prix Vente Entreprise"]}$)</span>
+            </div>
+          `,
+            )
+            .join("");
+          resultsDiv.style.display = "block";
+        } else {
+          resultsDiv.style.display = "none";
+        }
+      }
+
+      // Ajouter un article à la facture
+      function addArticleToCalc(name, price) {
+        const cleanPrice = parseInt(price.toString().replace(/\s/g, "")) || 0;
+
+        // Si l'article existe déjà, on augmente la quantité
+        const existing = invoiceItems.find((i) => i.name === name);
+        if (existing) {
+          existing.qty++;
+        } else {
+          invoiceItems.push({ name, price: cleanPrice, qty: 1 });
+        }
+
+        document.getElementById("calcSearch").value = "";
+        document.getElementById("calcSearchResults").style.display = "none";
+        updateCalcUI();
+      }
+
+      // Changer la quantité
+      function updateQty(index, newQty) {
+        if (newQty <= 0) {
+          invoiceItems.splice(index, 1);
+        } else {
+          invoiceItems[index].qty = parseInt(newQty);
+        }
+        updateCalcUI();
+      }
+
+      // Vider la calculatrice
+      function clearCalc() {
+        invoiceItems = [];
+        updateCalcUI();
+      }
+
+      // Mise à jour de l'affichage
+      function updateCalcUI() {
+        const container = document.getElementById("invoiceContent");
+        const grandTotalEl = document.getElementById("grandTotal");
+        const emptyMsg = document.getElementById("emptyMsg");
+
+        if (invoiceItems.length === 0) {
+          container.innerHTML = "";
+          const emptyDiv = document.createElement("p");
+          emptyDiv.className = "empty-msg";
+          emptyDiv.textContent = "Aucun article sélectionné";
+          container.appendChild(emptyDiv);
+          grandTotalEl.textContent = "0 $";
+          return;
+        }
+
+        let total = 0;
+        container.innerHTML = invoiceItems
+          .map((item, index) => {
+            const itemTotal = item.price * item.qty;
+            total += itemTotal;
+            return `
+            <div class="invoice-row">
+                <div class="row-top">
+                    <span>${item.name}</span>
+                    <span style="color:var(--accent)">${itemTotal} $</span>
+                </div>
+                <div class="row-controls">
+                    <span class="item-price">${item.price}$ x </span>
+                    <input type="number" class="qty-input" value="${item.qty}" min="1" 
+                           onchange="updateQty(${index}, this.value)">
+                    <button class="delete-btn" onclick="updateQty(${index}, 0)">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+          `;
+          })
+          .join("");
+
+        grandTotalEl.textContent = total.toLocaleString() + " $";
+      }
+      // ===== FIN CALCULATRICE =====
+
+      // Fonction pour détecter la catégorie automatiquement depuis le nom de l'article
+      function detectCategory(articleName, existingCategory) {
+        if (existingCategory && existingCategory.trim()) {
+          return existingCategory.trim().toLowerCase();
+        }
+        if (!articleName) return "tools";
+        const name = articleName.toLowerCase();
+
+        // Nourriture
+        if (
+          /burger|pizza|hot|donut|sandwich|bagel|pancake|frite|nuggets|tiramisu|sushi|nouille|nem|croissant|gauffre|cheesecake|bonbon|chocolat|chips|glace|mochi|bagel|soupe|saucisse|chicken|bowl|wrap|nachos|taco|burrito|cookie|cake|crepe|ice cream/i.test(
+            name,
+          )
+        ) {
+          return "food";
+        }
+        // Boissons
+        if (
+          /café|coffee|cappu|latte|ice tea|bubble tea|tea|juice|jus|smoothie|milkshake|frappé|sprunk|ecola|eau|soda|energy|water|vin chaud/i.test(
+            name,
+          )
+        ) {
+          return "drink";
+        }
+        // Alcool
+        if (
+          /bouteille|vin|champagne|cognac|vodka|whisky|rhum|tequila|rosé|cidre|bière|beer|alcool|spirit/i.test(
+            name,
+          )
+        ) {
+          return "alcohol";
+        }
+        // Jeux
+        if (
+          /jeu|uno|boombox|skateboard|parachute|balle|pétanque|cochonnet|feux d?artifice|ticket|loterie|carte/i.test(
+            name,
+          )
+        ) {
+          return "games";
+        }
+        // Outils (par défaut pour le reste)
+        return "tools";
+      }
+
+      // 1. Chargement des données
+      function loadData() {
+        Papa.parse(SHEET_URL, {
+          download: true,
+          header: true,
+          skipEmptyLines: true,
+          complete: function (results) {
+            // Ajouter la catégorie automatiquement si elle n'existe pas
+            DATA = results.data.map((item) => ({
+              ...item,
+              Categorie: detectCategory(item.Articles, item.Categorie),
+            }));
+            // On initialise les filtres une fois les données reçues
+            populateCompanyFilter();
+            filterData();
+          },
+        });
+      }
+
+      // 2. Remplir la liste des entreprises dans le filtre
+      function populateCompanyFilter() {
+        const companySelect = document.getElementById("filterCompany");
+        const companies = [...new Set(DATA.map((i) => i.Entreprise))].sort();
+
+        // On garde l'option par défaut "Toutes"
+        companySelect.innerHTML =
+          '<option value="">Toutes les entreprises</option>';
+
+        companies.forEach((c) => {
+          if (c) {
+            const option = document.createElement("option");
+            option.value = c;
+            option.textContent = c;
+            companySelect.appendChild(option);
+          }
+        });
+      }
+
+      // 3. Fonction de filtrage (Recherche + Entreprise + Catégorie)
+      function filterData() {
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const companyFilter = document.getElementById("filterCompany").value;
+
+        const filtered = DATA.filter((item) => {
+          const matchSearch = item.Articles.toLowerCase().includes(searchTerm);
+          const matchCompany =
+            !companyFilter || item.Entreprise === companyFilter;
+          const matchCategory =
+            !activeCategory || item.Categorie === activeCategory;
+          return matchSearch && matchCompany && matchCategory;
+        });
+
+        renderTable(filtered);
+        updateStats(filtered);
+      }
+
+      // 4. Affichage dans le tableau
+      function renderTable(dataToDisplay) {
+        const tbody = document.getElementById("tableBody");
+        tbody.innerHTML = dataToDisplay
+          .map(
+            (item) => `
+          <tr>
+            <td style="font-weight:600">
+                <span style="margin-right:8px">${EMOJIS[item.Categorie] || EMOJIS.default}</span>
+                ${item.Articles}
+            </td>
+            <td style="color:var(--text-muted)">${item["Prix Achat"]}$</td>
+            <td style="color:var(--primary)">${item["Prix Vente Entreprise"]}$</td>
+            <td style="color:var(--success); font-weight:bold">${item["Prix Vente Clients"]}$</td>
+            <td style="color:var(--accent)">${item.Quantité || 0}</td>
+            <td><span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:6px; font-size:0.8rem">${item.Entreprise}</span></td>
+          </tr>
+        `,
+          )
+          .join("");
+      }
+
+      // 5. Mise à jour des petits compteurs en haut
+      function updateStats(filteredData) {
+        document.getElementById("totalArticles").textContent = DATA.length;
+        document.getElementById("totalPartners").textContent = [
+          ...new Set(DATA.map((i) => i.Entreprise)),
+        ].length;
+        document.getElementById("displayedArticles").textContent =
+          filteredData.length;
+      }
+
+      // Écouteurs d'événements pour réagir quand on tape ou choisit une entreprise
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", filterData);
+      document
+        .getElementById("filterCompany")
+        .addEventListener("change", filterData);
+
+      // Écouteurs d'événements pour les boutons de catégorie
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const cat = chip.getAttribute("data-cat");
+          if (activeCategory === cat) {
+            // Désactiver si on clique sur la même catégorie
+            activeCategory = "";
+            chip.classList.remove("active");
+          } else {
+            // Activer la nouvelle catégorie
+            document
+              .querySelectorAll(".chip")
+              .forEach((c) => c.classList.remove("active"));
+            activeCategory = cat;
+            chip.classList.add("active");
+          }
+          filterData();
+        });
+      });
+
+      // Lancement automatique
+      loadData();
+    </script>
+
+    <!-- ===== CALCULATRICE FACTURE ===== -->
+    <button id="openCalcBtn" class="calc-toggle-btn" onclick="toggleCalc()">
+      🧮
+    </button>
+
+    <div id="calcSidebar" class="calc-sidebar">
+      <div class="calc-header">
+        <h3>Calculatrice Facture</h3>
+        <button onclick="toggleCalc()" class="close-btn">&times;</button>
+      </div>
+
+      <div class="calc-body">
+        <div class="search-section">
+          <label>Ajouter un article :</label>
+          <input
+            type="text"
+            id="calcSearch"
+            placeholder="Chercher un produit..."
+            oninput="searchInCalc()"
+          />
+          <div id="calcSearchResults" class="calc-search-results"></div>
+        </div>
+
+        <hr style="opacity: 0.1; margin: 20px 0" />
+
+        <div id="invoiceContent">
+          <p class="empty-msg">Aucun article sélectionné</p>
+        </div>
+      </div>
+
+      <div class="calc-footer">
+        <div class="total-bar">
+          <span>TOTAL ENTREPRISE</span>
+          <span id="grandTotal">0 $</span>
+        </div>
+        <button class="btn-clear" onclick="clearCalc()">
+          Effacer la commande
+        </button>
+      </div>
+    </div>
+    <!-- ===== FIN CALCULATRICE ===== -->
+  </body>
+</html>
