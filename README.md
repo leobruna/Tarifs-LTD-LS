@@ -6,20 +6,16 @@ Diamond City RP 💎
 ## 🚀 Fonctionnalités
 - Recherche par article ou entreprise
 - Filtres par catégorie et entreprise
-- Mode administrateur (ajout / modification / suppression)
-- Données persistantes via LocalStorage
-- Export CSV
+- Calculatrice Entreprise intégrée
 
 ## 🛠️ Technologies
 - HTML
 - CSS
 - JavaScript (vanilla)
-- LocalStorage
+- Google Sheet
 
 ## 📦 Déploiement
-Compatible avec :
-- GitHub Pages
-- Netlify (Drag & Drop ou GitHub)
+- GitHub Pages only
 
 ## 👤 Crédits
 Fait avec ❤️ par Leo & Bruna
